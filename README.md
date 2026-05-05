@@ -1,9 +1,12 @@
 # 🛡️ Cybersecurity Internship: Week 1 Security Assessment
 
-**Intern:** [Aapka Naam Yahan Likhein]
-**Target Application:** Vulnerable Node.js User Management System
-**Tech Stack:** Node.js, Express, MongoDB
-**Date:** May 2026
+> **Student:** Abdul Hadi
+> **ID:** DHC-418
+> **Institute:** Khwaja Fareed University of Engineering and Information Technology
+> **Internship:** DevelopersHub corporation Cybersecurity Internship 2026
+> **Deadline:** 15th May, 2026
+
+---
 
 ## 📝 1. Assessment Overview
 During Week 1, I successfully set up the mock vulnerable web application locally on my Kali Linux environment. My objective was to evaluate the application's security posture by combining automated scanning (OWASP ZAP) with manual penetration testing techniques (Browser Developer Tools). 
