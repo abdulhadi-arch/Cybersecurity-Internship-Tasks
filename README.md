@@ -92,3 +92,35 @@ Based on my manual and automated testing, here is what needs to be fixed in the 
 * **Fix Applied:**
   * Integrated `helmet.js` as top-level middleware in `app.js` to automatically set secure HTTP headers and prevent attacks like Clickjacking and XSS.
   * Secured Express Session cookies by adding `httpOnly: true` (preventing client-side script access) and `sameSite: 'lax'` (mitigating CSRF attacks).
+
+
+
+
+---
+
+## 🎯 Week 3: Advanced Security and Final Reporting
+
+**Status:** Completed
+**Objective:** Perform final basic penetration testing, establish security logging, and formulate a best-practice checklist.
+
+### 1. Basic Penetration Testing (Nmap)
+I performed a local port scan using Nmap to ensure no unnecessary ports were exposed by the application server. 
+* **Command:** `nmap -p 3000 localhost`
+* **Result:** Port 3000 (Node.js) is open and securely handling requests with Helmet.js headers in place.
+
+### 2. Application Logging (Winston)
+To maintain an audit trail and monitor security events, I integrated the `winston` logging library.
+* **Implementation:** Configured `winston` to log critical events.
+* **Transports:** Logs are output to the console for development and written to a persistent `security.log` file for production monitoring.
+* **Event Logged:** Application startup and security initialization.
+
+### ✅ 3. Final Security Checklist
+Before deploying any application, the following baseline security practices must be met:
+- [x] **Validate all inputs:** Never trust user data. Strip NoSQL operators and validate formats (e.g., using `validator`).
+- [x] **Use HTTPS for data transmission:** Ensure all communication is encrypted in transit (TLS/SSL).
+- [x] **Hash and salt passwords:** Never store plain-text passwords. Always use strong hashing algorithms like `bcrypt` with appropriate salt rounds.
+- [x] **Set Secure HTTP Headers:** Prevent common web vulnerabilities using `helmet`.
+- [x] **Secure Session Cookies:** Apply `SameSite` and `HttpOnly` flags to prevent CSRF and XSS cookie theft.
+
+---
+**🎉 Internship Final Conclusion:** The vulnerable Node.js application has been successfully audited, patched, and secured according to industry standards.
