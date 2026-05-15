@@ -60,3 +60,35 @@ Based on my manual and automated testing, here is what needs to be fixed in the 
 3. **Enforce Strong Password Policies:** Implement `bcrypt` to securely hash passwords. The current system appears to store or handle passwords insecurely.
 4. **Implement Security Headers:** Integrate `helmet.js` in the Express app to automatically set crucial HTTP headers, including `Content-Security-Policy`, `X-Frame-Options: DENY`, and `X-Content-Type-Options: nosniff`.
 5. **Secure Session Cookies:** Update the cookie configuration to include the `SameSite=Lax` or `Strict` attribute.
+
+
+
+
+---
+
+## 🛡️ Week 2: Implementing Security Measures & Remediation
+
+**Status:** Completed
+**Objective:** Patch the vulnerabilities discovered in Week 1 using industry-standard Node.js security libraries.
+
+### 1. Fixing Authentication Bypass (NoSQL Injection)
+* **Vulnerability:** The application previously accepted NoSQL operators (like `$gt`) directly from the login form, allowing attackers to bypass authentication.
+* **Fix Applied:** * Implemented strict type checking in `routes/users.js` to ensure `req.body.username` and `req.body.password` are processed strictly as strings (`typeof === 'string'`).
+  * Modified the database query logic to explicitly search by string values, completely neutralizing object-based NoSQL injection payloads.
+
+### 2. Secure Password Storage
+* **Vulnerability:** Passwords were being stored in plain text, exposing user credentials in the event of a database breach.
+* **Fix Applied:** * Integrated the `bcrypt` library.
+  * Implemented password hashing in the `/adduser` route using `bcrypt.hash()` with a salt round of 10.
+  * Updated the login authentication logic to securely compare plaintext input against the stored hashes using `bcrypt.compare()`.
+
+### 3. Input Validation
+* **Vulnerability:** The application lacked input validation, accepting malformed data (such as invalid emails).
+* **Fix Applied:** * Integrated the `validator` library.
+  * Added validation checks in the registration route to strictly enforce standard email formats (`validator.isEmail()`).
+
+### 4. Securing Data Transmission & HTTP Headers
+* **Vulnerability:** Missing critical security headers (CSP, X-Frame-Options) and insecure session cookies.
+* **Fix Applied:**
+  * Integrated `helmet.js` as top-level middleware in `app.js` to automatically set secure HTTP headers and prevent attacks like Clickjacking and XSS.
+  * Secured Express Session cookies by adding `httpOnly: true` (preventing client-side script access) and `sameSite: 'lax'` (mitigating CSRF attacks).
