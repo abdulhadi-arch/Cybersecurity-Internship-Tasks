@@ -93,7 +93,8 @@ Based on my manual and automated testing, here is what needs to be fixed in the 
   * Integrated `helmet.js` as top-level middleware in `app.js` to automatically set secure HTTP headers and prevent attacks like Clickjacking and XSS.
   * Secured Express Session cookies by adding `httpOnly: true` (preventing client-side script access) and `sameSite: 'lax'` (mitigating CSRF attacks).
 
-
+#### Evidence of Fix (NoSQL Bypass Blocked):
+![NoSQL Fix Proof](./week2_nosql_fix.png)
 
 
 ---
@@ -121,6 +122,11 @@ Before deploying any application, the following baseline security practices must
 - [x] **Hash and salt passwords:** Never store plain-text passwords. Always use strong hashing algorithms like `bcrypt` with appropriate salt rounds.
 - [x] **Set Secure HTTP Headers:** Prevent common web vulnerabilities using `helmet`.
 - [x] **Secure Session Cookies:** Apply `SameSite` and `HttpOnly` flags to prevent CSRF and XSS cookie theft.
+
+#### Evidence of Logging & Testing:
+![Winston Logs](./week3_logging.png)
+![Nmap Scan](./week3_nmap.png)
+
 
 ---
 **🎉 Internship Final Conclusion:** The vulnerable Node.js application has been successfully audited, patched, and secured according to industry standards.
