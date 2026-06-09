@@ -130,3 +130,27 @@ Before deploying any application, the following baseline security practices must
 
 ---
 **🎉 Internship Final Conclusion:** The vulnerable Node.js application has been successfully audited, patched, and secured according to industry standards.
+
+
+___
+
+## Week 4: Advanced Security (Fail2Ban, Winston, Helmet, CORS, Rate Limit)
+* Implemented logging using Winston with precise timestamps.
+* Configured Fail2Ban to automatically block IPs based on failed login attempts.
+* Applied Helmet for headers, CORS for origin control, and Express Rate Limit to prevent brute-force attacks.
+
+## Week 5: Vulnerability Exploitation & Remediation (SQLi & CSRF)
+* Identified and exploited an SQL Injection vulnerability on the `/search` endpoint.
+* Fixed SQLi by replacing direct string concatenation with **Parameterized Queries (Prepared Statements)**.
+* Intercepted and analyzed application traffic using **Burp Suite** via Kali Linux.
+* Implemented `csurf` middleware to successfully block unauthorized CSRF requests (returning 403 Forbidden).
+
+### Screenshots
+**1. SQL Injection Attack:**
+![SQLi Evidence](./sqli_manual.png)
+
+**2. Burp Suite Interception:**
+![Burp Suite Intercept](./csrf_burpsuite.png)
+
+**3. CSRF Defense Block:**
+![CSRF Blocked](./csrf_blocked.png)
