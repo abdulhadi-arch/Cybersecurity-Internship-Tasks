@@ -159,3 +159,35 @@ ___
 
 **3. CSRF Defense Block:**
 ![CSRF Blocked](./csrf_blocked.png)
+
+
+___
+
+
+## Week 6: Advanced Security Audits & Final Deployment
+**Status:** Completed ✅
+
+### 1. Security Audits & Compliance (Task 1)
+To ensure the application complies with industry standards and OWASP Top 10 guidelines, automated security audits were conducted:
+* **Dependency Scanning:** Ran `npm audit` to detect and auto-fix known vulnerabilities in Node.js packages.
+* **Web Server Scanning:** Utilized **Nikto** (via Kali Linux) to scan the Node.js endpoint, successfully validating the presence of Rate Limiting and CSRF protection headers.
+* **System Auditing:** Executed **Lynis** on the Arch Linux host system to evaluate OS-level security, achieving a baseline Hardening Index of 64.
+
+### 2. Secure Deployment Practices (Task 2)
+Prepared the application for production by implementing a secure containerization strategy:
+* Created a hardened `Dockerfile` utilizing a lightweight `node:18-alpine` image.
+* Configured the build process to automatically execute `apk update && apk upgrade` and `npm audit fix`, ensuring the container is patched against the latest vulnerabilities before deployment.
+
+### 3. Final Penetration Testing (Task 3)
+Conducted a comprehensive final penetration test to validate the effectiveness of the implemented security controls across the entire internship project:
+* **SQL Injection Bypass:** Attempted manual payload injections (e.g., `' OR '1'='1`). **Result:** Defeated by Parameterized Queries.
+* **CSRF Simulation:** Intercepted and modified state-changing requests using **Burp Suite**. **Result:** Defeated by `csurf` middleware (403 Forbidden).
+* **Brute-Force Attack:** Flooded the server with rapid authentication requests. **Result:** Defeated by `express-rate-limit` and `Fail2Ban` working in tandem to throttle and block the attacker's IP.
+
+### 📸 Proof of Concept (Week 6 Scans)
+
+**1. Nikto Vulnerability Scan (Validating active defenses):**
+![Nikto Scan](./nikto_scan.png)
+
+**2. Lynis System Audit (OS Hardening):**
+![Lynis Audit](./lynis_audit.png)
