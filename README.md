@@ -139,6 +139,11 @@ ___
 * Configured Fail2Ban to automatically block IPs based on failed login attempts.
 * Applied Helmet for headers, CORS for origin control, and Express Rate Limit to prevent brute-force attacks.
 
+![Rate Limit & Fail2Ban Evidence](./week4_fail2ban.png)
+
+___
+
+
 ## Week 5: Vulnerability Exploitation & Remediation (SQLi & CSRF)
 * Identified and exploited an SQL Injection vulnerability on the `/search` endpoint.
 * Fixed SQLi by replacing direct string concatenation with **Parameterized Queries (Prepared Statements)**.
